@@ -1,3 +1,8 @@
+# This example requires airflow installed and running
+# It demonstrates how Prefect can be used to observe Airflow dags
+# By emitting Prefect events
+# It show how easy it is to start observing existing workflows with Prefect
+
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
