@@ -3,7 +3,7 @@ from prefect import flow, task
 from prefect.events import emit_event
 
 
-@task
+# @task
 def fetch_weather(lat: float, lon: float):
     base_url = "https://api.open-meteo.com/v1/forecast/"
     temps = httpx.get(
@@ -15,19 +15,19 @@ def fetch_weather(lat: float, lon: float):
     emit_event(
         event="forecast.fetched",
         resource={"prefect.resource.id": "fetch next temp forecast"},
-        payload={"temp": f"{forecasted_temp}"},
+        payload={"temp": forecasted_temp},
     )
     return forecasted_temp
 
 
-@task
+# @task
 def save_weather(temp: float):
     with open("weather.csv", "w+") as w:
         w.write(str(temp))
     return "Successfully wrote temp"
 
 
-@flow(log_prints=True)
+# @flow(log_prints=True)
 def pipeline(lat: float = 40.7, lon: float = -70.4):
     temp = fetch_weather(lat, lon)
     result = save_weather(temp)
