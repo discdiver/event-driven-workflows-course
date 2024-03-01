@@ -13,7 +13,7 @@ def recommend_shares(temp: float = 19):
         shares = temp * 1_000
     else:
         shares = 0
-    print(f"Models says: buy {shares} shares")
+    print(f"Model says: buy {shares} shares")
     return shares
 
 
