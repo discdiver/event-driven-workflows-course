@@ -15,7 +15,7 @@ def fetch_weather(lat: float, lon: float):
     emit_event(
         event="forecast.fetched",
         resource={"prefect.resource.id": "fetch next temp forecast"},
-        payload={"temp": forecasted_temp},
+        payload={"temp": f"{forecasted_temp}"},
     )
     return forecasted_temp
 
