@@ -13,6 +13,7 @@ def recommend_shares(temp: float = 0):
     Again, this is not investment advice anyone should follow - but they're the client, right? 🤣
     The code prints, logs, and returns the recommend number of shares to purchase.
     """
+    shares = 0
     if temp > 20:
         shares = temp * 1_000
     print(f"Model says: buy {shares} shares")
