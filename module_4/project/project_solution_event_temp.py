@@ -13,8 +13,8 @@ def fetch_weather(lat: float, lon: float):
     forecasted_temp = float(temps.json()["hourly"]["temperature_2m"][0])
     print(f"Forecasted temp C: {forecasted_temp} degrees")
     emit_event(
-        event=f"weather.fetched",
-        resource={"prefect.resource.id": "fetch next temp"
+        event="forecast.fetched",
+        resource={"prefect.resource.id": "fetch next temp forecast"},
         payload={"temp": forecasted_temp},
     )
     return forecasted_temp
@@ -28,7 +28,7 @@ def save_weather(temp: float):
 
 
 @flow
-def pipeline(lat: float = 38.9, lon: float = -77.0):
+def pipeline(lat: float = 40.7, lon: float = -70.4):
     temp = fetch_weather(lat, lon)
     result = save_weather(temp)
     return result
