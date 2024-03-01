@@ -6,7 +6,8 @@ def emit_name_event(name: str = "kiki"):
     print(f"Hi {name}!")
     emit_event(
         event=f"{name}.sent.event!",
-        resource={"prefect.resource.id": f"developer.{name}"},
+        resource={"prefect.resource.id": f"developer.{name}", "dog": "hotdog"},
+        payload={"name": name},
     )
 
 
