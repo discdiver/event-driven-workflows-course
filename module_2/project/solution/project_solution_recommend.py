@@ -14,7 +14,7 @@ def recommend_shares(temp: float = 0):
     The code prints, logs, and returns the recommend number of shares to purchase.
     """
     shares = 0
-    if temp > 20:
+    if temp > 0:
         shares = temp * 1_000
     print(f"Model says: buy {shares} shares")
     return shares
