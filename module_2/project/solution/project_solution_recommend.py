@@ -2,7 +2,7 @@ from prefect import flow
 
 
 @flow(log_prints=True)
-def recommend_shares(temp: str = "0"):
+def recommend_shares(temp):
     """A function that uses a highly sophisticated rule to determine how many shares of stock should be purchased.
     The function takes a parameter named temp,
     which consists of the next predicted temperature in New York City.
