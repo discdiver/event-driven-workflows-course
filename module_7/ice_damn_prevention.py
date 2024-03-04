@@ -4,7 +4,7 @@ from prefect.events import emit_event
 
 
 @task(retries=3)
-def get_weather_forecast(lat: float, lon: float) -> float:
+def get_forecast(lat: float, lon: float) -> float:
     base_url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
@@ -17,9 +17,9 @@ def get_weather_forecast(lat: float, lon: float) -> float:
 
 
 @flow(log_prints=True)
-def snow_forecast(lat: float = 38.9, lon: float = -77.0, min_cm=1):
+def check_weather(lat: float = 38.9, lon: float = -77.0, min_cm=1):
 
-    response = get_weather_forecast(lat, lon)
+    response = get_forecast(lat, lon)
     data = response.json()["hourly"]
     expected_temp_c = float(data["temperature_2m"][0])  # predicted temp
     expected_snow_cm = float(data["snowfall"][0])  # predicted snowfall
@@ -41,4 +41,10 @@ def snow_forecast(lat: float = 38.9, lon: float = -77.0, min_cm=1):
 
 
 if __name__ == "__main__":
-    snow_forecast().from_source().deploy(name="ice_damn_forecast", workpool="managed1")
+    check_weather()
+
+    # create deployment
+    # flow.from_source(
+    #     source="https://github.com/discdiver/event-driven-workflows-course.git",
+    #     entrypoint="module_7/ice_damn_prevention_:check_weather",
+    # ).deploy(name="ice_damn_forecast", work_pool_name="managed1")
