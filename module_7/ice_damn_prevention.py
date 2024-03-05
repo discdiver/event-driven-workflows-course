@@ -48,10 +48,10 @@ def check_weather(lat: float = 38.9, lon: float = -77.0, min_cm=1):
 
 
 if __name__ == "__main__":
-    # check_weather()
+    check_weather()
 
     # create deployment
-    flow.from_source(
-        source="https://github.com/discdiver/event-driven-workflows-course.git",
-        entrypoint="module_7/ice_damn_prevention.py:check_weather",
-    ).deploy(name="ice_damn_forecast", work_pool_name="managed1")
+    # flow.from_source(
+    #     source="https://github.com/discdiver/event-driven-workflows-course.git",
+    #     entrypoint="module_7/ice_damn_prevention.py:check_weather",
+    # ).deploy(name="ice_damn_forecast", work_pool_name="managed1")
