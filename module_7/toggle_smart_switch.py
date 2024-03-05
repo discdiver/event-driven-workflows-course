@@ -45,4 +45,8 @@ if __name__ == "__main__":
     flow.from_source(
         source="https://github.com/discdiver/event-driven-workflows-course.git",
         entrypoint="module_7/toggle_smart_switch.py:update_smart_plug_state",
-    ).deploy(name="update_smart_plug", work_pool_name="managed1")
+    ).deploy(
+        name="update_smart_plug",
+        work_pool_name="managed1",
+        job_variables={"env": {"EXTRA_PIP_PACKAGES": "python-kasa"}},
+    )
